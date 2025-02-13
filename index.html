@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Conversor numérico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="welcome-container" id="welcomeContainer">
+        <h1 style="color: #ffce1c;">Projeto Integrador:</h1>
+        <br>
+        <h1 style="line-height: 1.75;">Conversor numérico</h1>
+        <br>
+        <br>
+        <p>
+            Ferramenta simples de cálculo binário e decimal.
+        </p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <div class="w-credits">
+            Alunos: Davi R. do Nascimento | João M. S. Ferreira | José O. S. Junior | Luiz G. M. Barbosa<br>
+            Curso: Engenharia da Computação - 2º período | UNITAU
+        </div>
+        
+        <button class="welcome-btn" onclick="startCalculadora()">Start</button>
+    </div>
+
+    <div class="wrapper">
+        <div class="container">
+            <h1>Conversor binário</h1>
+            <br>
+            <input type="text" id="binInput" placeholder="Binário" oninput="convertToDecimal()">
+            <div class="result">
+                <div>Resultado decimal:</div>
+                <br>
+                <div id="binToDecResult">0</div>
+            </div>
+
+            <br>
+
+            <input type="number" id="decInput" placeholder="Decimal" oninput="convertToBinary()">
+            <div class="result">
+                <div>Resultado binário:</div>
+                <br>
+                <div id="decToBinResult">0</div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h1 id="calcTitle">Calculadora binária</h1>
+            <br>
+            <input type="text" id="binInputA" placeholder="Binário A">
+            <input type="text" id="binInputB" placeholder="Binário B">
+            <div class="buttons">
+                <button onclick="setOperation('sum')">+</button>
+                <button onclick="setOperation('subtract')">-</button>
+                <button onclick="setOperation('multiply')">*</button>
+                <button onclick="setOperation('divide')">/</button>
+            </div>
+            <div class="result">
+                <div>Resultado:</div>
+                <br>
+                <div id="binCalcResult">0</div>
+            </div>
+            <button class="toggle-btn" onclick="toggleBinaryDecimal()">Alternar para decimal</button>
+        </div>
+    </div>
+    <br>
+    <button class="help-btn" onclick="toggleHelpPanel()">Ajuda</button>
+
+    <div class="help-panel" id="helpPanel">
+        <h2>Ajuda e explicações</h2>
+        <br>
+        <p style="color: #e2c542">O que são números binários, decimais e outras bases?</p>
+        <p>Os números binários são representados por dois símbolos: 0 e 1. Eles são a base para o sistema de computação digital.</p>
+        <p>O sistema decimal é o sistema de numeração padrão que usamos no cotidiano, baseado em 10 símbolos: 0-9.</p>
+        <p>Outras bases como octal (base 8) e hexadecimal (base 16) são utilizadas em computação para representar números de forma compacta.</p>
+        
+        <p style="color: #e2c542">Como as conversões funcionam?</p>
+        <p>Para converter de binário para decimal, você usa a fórmula de soma dos valores das potências de 2. Exemplo: 101 (binário) = 1×2² + 0×2¹ + 1×2⁰ = 5 (decimal).</p>
+        
+        <p style="color: #e2c542">Operações suportadas:</p>
+        <p>Você pode realizar operações de soma, subtração, multiplicação e divisão entre números binários ou decimais, dependendo do modo selecionado.</p>
+        
+        <button onclick="toggleHelpPanel()">Fechar</button>
+    </div>
+
+    <div class="credits">
+        Projeto Integrador: Conversor e calculadora binária.<br>
+        Alunos: Davi R. do Nascimento | João M. S. Ferreira | José O. S. Junior | Luiz G. M. Barbosa<br>
+        Curso: Engenharia da Computação - 2º período | UNITAU
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
