@@ -64,7 +64,7 @@
                 steps += `\nRestos lidos de baixo para cima: ${remainders.join('')}`;
                 
                 document.getElementById('calculationSteps').textContent = steps;
-                document.getElementById('stepsTitle').textContent = "Conversão Decimal → Binário";
+                document.getElementById('stepsTitle').textContent = "Conversão decimal → binário";
             } else {
                 decToBinResult.textContent = 'Decimal inválido';
                 decToBinResult.style.color = '#ED4245';
