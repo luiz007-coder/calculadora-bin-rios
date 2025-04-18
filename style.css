@@ -67,6 +67,11 @@
             transition: transform 0.3s;
         }
 
+        ::placeholder {
+            color: #6c6c6c;
+            opacity: 1;
+        }
+
         .toggle-btn {
             width: 230px;
             font-size: 14px;
@@ -200,6 +205,14 @@
             .toggle-btn {
                 font-size: 12px;
             }
+
+            .help-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+                bottom: 15px;
+                right: 15px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -224,12 +237,11 @@
             }
 
             .help-btn {
-                font-size: 12px;
-                padding: 12px;
-                gap: 5px;
-                position: relative;
-                top: -25px;
-                width: 100%;
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+                bottom: 15px;
+                right: 15px;
             }
         }
 
@@ -265,17 +277,28 @@
         }
 
         .help-btn {
-            font-weight: bold;
-            border-radius: 8px;
-            text-align: center;
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-            border: 2px solid #c7812c;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             background-color: #e3a252;
-            transition: transform 0.3s;
-            width: 100px;
+            color: white;
+            border: 2px solid #c7812c;
+            font-size: 17px;
+            font-weight: bold;
             cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        
+        .help-btn:hover {
+            background-color: #db9c4f;
         }
 
         .help-header {
