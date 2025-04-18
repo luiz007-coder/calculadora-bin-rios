@@ -13,7 +13,7 @@
                 binToDecResult.textContent = decimal;
                 binToDecResult.style.color = '#dcddde';
                 
-                // Mostrar passo a passo
+                // mostra o passo a passo
                 let steps = `Conversão de binário para decimal:\n\n`;
                 steps += `Número binário: ${binInput}\n\n`;
                 steps += `Cálculo:\n`;
@@ -47,7 +47,7 @@
                 decToBinResult.textContent = binary;
                 decToBinResult.style.color = '#dcddde';
                 
-                // Mostrar passo a passo
+                // mostra o passo a passo
                 let steps = `Conversão de decimal para binário:\n\n`;
                 steps += `Número decimal: ${decimal}\n\n`;
                 steps += `Divisões sucessivas por 2:\n`;
