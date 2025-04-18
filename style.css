@@ -23,7 +23,8 @@
             border: 2px solid #20263a;
             background-color: #303853;
             border-radius: 12px;
-            top: 8px;
+            margin-top: 15px;
+            margin-bottom: 5px;
             padding: 10px;
             width: 280px;
             height: auto;
@@ -266,7 +267,7 @@
         .help-btn {
             font-weight: bold;
             border-radius: 8px;
-            margin-bottom: 10px;
+            text-align: center;
             color: #fff;
             font-family: 'Poppins', sans-serif;
             font-size: 15px;
