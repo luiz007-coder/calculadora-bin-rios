@@ -67,6 +67,10 @@
             transition: transform 0.3s;
         }
 
+        button:active {
+            transform: scale(0.98);
+        }
+
         ::placeholder {
             font-style: italic;
             color: #747474;
@@ -78,10 +82,6 @@
             font-size: 14px;
             margin-top: 10px;
             height: 37px;
-        }
-
-        button:hover, .toggle-btn:hover, .help-btn:hover {
-            background-color: #db9c4f;
         }
 
         input:focus {
@@ -298,10 +298,6 @@
             justify-content: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             transition: all 0.3s;
-        }
-        
-        .help-btn:hover {
-            background-color: #db9c4f;
         }
 
         .help-header {
