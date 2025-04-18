@@ -1,233 +1,383 @@
-        let isBinaryMode = true;
-        let operation = null;
-
-        // função de binário p dec
-        function convertToDecimal() {
-            let binInput = document.getElementById('binInput').value;
-            let binToDecResult = document.getElementById('binToDecResult');
-            if (binInput === "") {
-                binToDecResult.textContent = '0';
-                binToDecResult.style.color = '#dcddde';
-            } else if (/^[01]+$/.test(binInput)) {
-                let decimal = parseInt(binInput, 2);
-                binToDecResult.textContent = decimal;
-                binToDecResult.style.color = '#dcddde';
-                
-                // mostra o passo a passo
-                let steps = `Conversão de binário para decimal:\n\n`;
-                steps += `Número binário: ${binInput}\n\n`;
-                steps += `Cálculo:\n`;
-                
-                for (let i = 0; i < binInput.length; i++) {
-                    let bit = binInput[i];
-                    let power = binInput.length - 1 - i;
-                    steps += `${bit} × 2^${power} = ${bit * Math.pow(2, power)}\n`;
-                }
-                
-                steps += `\nSoma total: ${decimal}`;
-                
-                document.getElementById('calculationSteps').textContent = steps;
-                document.getElementById('stepsTitle').textContent = "Conversão binário → decimal";
-            } else {
-                binToDecResult.textContent = 'Binário inválido';
-                binToDecResult.style.color = '#ED4245';
-            }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #343434;
+            color: #dcddde;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            padding: 20px;
         }
 
-        // função de dec p binário
-        function convertToBinary() {
-            let decInput = document.getElementById('decInput').value;
-            let decToBinResult = document.getElementById('decToBinResult');
-            if (decInput === "") {
-                decToBinResult.textContent = '0';
-                decToBinResult.style.color = '#dcddde';
-            } else if (!isNaN(decInput) && decInput.trim() !== "" && Number(decInput) >= 0) {
-                let decimal = parseInt(decInput);
-                let binary = decimal.toString(2);
-                decToBinResult.textContent = binary;
-                decToBinResult.style.color = '#dcddde';
-                
-                // mostra o passo a passo
-                let steps = `Conversão de decimal para binário:\n\n`;
-                steps += `Número decimal: ${decimal}\n\n`;
-                steps += `Divisões sucessivas por 2:\n`;
-                
-                let num = decimal;
-                let remainders = [];
-                while (num > 0) {
-                    let remainder = num % 2;
-                    remainders.unshift(remainder);
-                    steps += `${num} ÷ 2 = ${Math.floor(num / 2)} (resto ${remainder})\n`;
-                    num = Math.floor(num / 2);
-                }
-                
-                steps += `\nRestos lidos de baixo para cima: ${remainders.join('')}`;
-                
-                document.getElementById('calculationSteps').textContent = steps;
-                document.getElementById('stepsTitle').textContent = "Conversão decimal → binário";
-            } else {
-                decToBinResult.textContent = 'Decimal inválido';
-                decToBinResult.style.color = '#ED4245';
-            }
+        .wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
         }
-
-        // aqui é p alternar entre binário e dec
-        function toggleBinaryDecimal() {
-            isBinaryMode = !isBinaryMode;
-            const button = document.querySelector('.toggle-btn');
-            const calcTitle = document.getElementById('calcTitle');
-            if (isBinaryMode) {
-                button.textContent = 'Alternar para decimal';
-                calcTitle.textContent = 'Calculadora binária';
-                document.getElementById('binInputA').setAttribute('placeholder', 'Binário A');
-                document.getElementById('binInputB').setAttribute('placeholder', 'Binário B');
-            } else {
-                button.textContent = 'Alternar para binário';
-                calcTitle.textContent = 'Calculadora decimal';
-                document.getElementById('binInputA').setAttribute('placeholder', 'Decimal A');
-                document.getElementById('binInputB').setAttribute('placeholder', 'Decimal B');
-            }
-            resetResultIfEmpty();
+        .container {
+            border: 2px solid #20263a;
+            background-color: #303853;
+            border-radius: 12px;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            padding: 10px;
+            width: 280px;
+            height: auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            position: relative;
         }
-
-        // setar a operação(+ - * /)
-        function setOperation(op) {
-            operation = op;
-            calculate();
-        }
-
-        // função calc binário ou dec
-        function calculate() {
-            let inputA = document.getElementById('binInputA').value;
-            let inputB = document.getElementById('binInputB').value;
-            let calcResult = document.getElementById('binCalcResult');
-            let stepsTitle = document.getElementById('stepsTitle');
-            let calculationSteps = document.getElementById('calculationSteps');
         
-            if (inputA === "" || inputB === "") {
-                calcResult.textContent = '0';
-                return;
+        h1 {
+            font-size: 17px;
+            color: #ffffff;
+            margin-bottom: -8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 11px;
+            border-radius: 9px;
+            margin-bottom: 10px;
+            border: none;
+            outline: none;
+            background-color: #a5a5a5;
+            border: 2px solid #6a6a6a;
+            color: #fff;
+            transition: transform 0.3s, background-color 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        button {
+            font-weight: bold;
+            width: 48px;
+            height: 35px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            border: 2px solid #c7812c;
+            background-color: #e3a252;
+            transition: transform 0.3s;
+        }
+
+        ::placeholder {
+            font-style: italic;
+            color: #747474;
+            opacity: 1;
+        }
+
+        .toggle-btn {
+            width: 230px;
+            font-size: 14px;
+            margin-top: 10px;
+            height: 37px;
+        }
+
+        button:hover, .toggle-btn:hover, .help-btn:hover {
+            background-color: #db9c4f;
+        }
+
+        input:focus {
+            background-color: #aeaeae;
+        }
+
+        .result {
+            border: 2px solid #333333;
+            background-color: #525252;
+            padding: 8px;
+            border-radius: 11px;
+            margin-bottom: 2px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #ce5548;
+            font-size: 9px;
+            text-align: center;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: space-between;
+        }
+
+        .credits {
+            font-size: 13px;
+            color: #bdc3c7;
+            text-align: center;
+            font-weight: bold;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 5px;
+            line-height: 1.55;
+        }
+
+        @media (max-width: 600px) {
+            .credits {
+                font-size: 7px;
+                padding: 10px;
+                line-height: 1.75;
             }
+        }
+
+        @media (max-width: 400px) {
+            .credits {
+                font-size: 6px;
+                padding: 8px;
+                line-height: 1.5;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .wrapper {
+                justify-content: center;
+                justify-content: flex-start;
+                padding-top: 10px;
+                gap: 20px;
+            }
+            .container {
+                max-width: 85%;
+                padding: 15px;
+                margin: 0 auto;
+                top: -10px;
+                position: relative;
+            }
+            h1 {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .wrapper {
+                justify-content: center;
+                justify-content: flex-start;
+                padding-top: 5px;
+                gap: 20px;
+            }
+            .container {
+                width: 90%;
+                padding: 12px;
+                margin: 0 auto;
+                top: -10px;
+                position: relative;
+            }
+            h1 {
+                font-size: 14px;
+            }
+            input, button {
+                font-size: 14px;
+                padding: 10px;
+            }
+            .result {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .wrapper {
+                justify-content: center;
+                justify-content: flex-start;
+                padding-top: 5px;
+                gap: 20px;
+            }
+            .container {
+                width: 90%;
+                padding: 10px;
+                margin: 0 auto;
+                top: -30px;
+                position: relative;
+            }
+            h1 {
+                font-size: 14px;
+            }
+            input, button {
+                font-size: 12px;
+                padding: 8px;
+            }
+            .toggle-btn {
+                font-size: 12px;
+            }
+
+            .help-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .help-panel {
+                width: 90%;
+                max-width: 400px;
+                padding: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                height: auto;
+                max-height: 500px;
+                overflow-y: auto;
+            }
+
+            .help-panel h2 {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            .help-panel p {
+                font-size: 10px;
+            }
+
+            .help-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        .help-panel {
+            display: none;
+            background-color: #343434;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #242424;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            max-width: 390px;
+            z-index: 1000;
+        }
+
+        .help-panel h2 {
+            font-size: 19px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .help-panel p {
+            font-size: 12px;
+            font-weight: bold;
+            color: #ecf0f1;
+            line-height: 1.55;
+            margin-bottom: 9px;
+        }
+
+        .help-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e3a252;
+            color: white;
+            border: 2px solid #c7812c;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
         
-            // binário p dec
-            if (operation && isBinaryMode && /^[01]+$/.test(inputA) && /^[01]+$/.test(inputB)) {
-                let numA = parseInt(inputA, 2);
-                let numB = parseInt(inputB, 2);
-                let result;
-                let operationSymbol = '';
-                let steps = `Operação binária:\n\n`;
-                steps += `Binário A: ${inputA} (${numA} em decimal)\n`;
-                steps += `Binário B: ${inputB} (${numB} em decimal)\n\n`;
-                
-                if (operation === 'sum') {
-                    result = numA + numB;
-                    operationSymbol = '+';
-                    steps += `Soma:\n${numA} + ${numB} = ${result}\n\n`;
-                } else if (operation === 'subtract') {
-                    result = numA - numB;
-                    operationSymbol = '-';
-                    steps += `Subtração:\n${numA} - ${numB} = ${result}\n\n`;
-                } else if (operation === 'multiply') {
-                    result = numA * numB;
-                    operationSymbol = '×';
-                    steps += `Multiplicação:\n${numA} × ${numB} = ${result}\n\n`;
-                } else if (operation === 'divide') {
-                    if (numB !== 0) {
-                        result = numA / numB;
-                        operationSymbol = '÷';
-                        steps += `Divisão:\n${numA} ÷ ${numB} = ${result}\n\n`;
-                    } else {
-                        result = "Erro: divisão por zero";
-                    }
-                }
-                
-                if (result !== "Erro: divisão por zero") {
-                    steps += `Resultado em decimal: ${result}\n`;
-                    steps += `Resultado em binário: ${result.toString(2)}`;
-                    calcResult.textContent = result.toString(2);
-                    calcResult.style.color = '#dcddde';
-                } else {
-                    steps += result;
-                    calcResult.textContent = result;
-                    calcResult.style.color = '#ED4245';
-                }
-                
-                stepsTitle.textContent = `Operação binária: ${inputA} ${operationSymbol} ${inputB}`;
-                calculationSteps.textContent = steps;
-            } else if (operation && !isBinaryMode && !isNaN(inputA) && !isNaN(inputB)) {
-                // calc dec aqui
-                let numA = parseFloat(inputA);
-                let numB = parseFloat(inputB);
-                let result;
-                let operationSymbol = '';
-                let steps = `Operação Decimal:\n\n`;
-                steps += `Decimal A: ${numA}\n`;
-                steps += `Decimal B: ${numB}\n\n`;
-                
-                if (operation === 'sum') {
-                    result = numA + numB;
-                    operationSymbol = '+';
-                    steps += `Soma:\n${numA} + ${numB} = ${result}\n\n`;
-                } else if (operation === 'subtract') {
-                    result = numA - numB;
-                    operationSymbol = '-';
-                    steps += `Subtração:\n${numA} - ${numB} = ${result}\n\n`;
-                } else if (operation === 'multiply') {
-                    result = numA * numB;
-                    operationSymbol = '×';
-                    steps += `Multiplicação:\n${numA} × ${numB} = ${result}\n\n`;
-                } else if (operation === 'divide') {
-                    if (numB !== 0) {
-                        result = numA / numB;
-                        operationSymbol = '÷';
-                        steps += `Divisão:\n${numA} ÷ ${numB} = ${result}\n\n`;
-                    } else {
-                        result = "Erro: divisão por zero";
-                    }
-                }
-                
-                stepsTitle.textContent = `Operação decimal: ${numA} ${operationSymbol} ${numB}`;
-                calculationSteps.textContent = steps;
-                
-                if (result !== "Erro: divisão por zero") {
-                    calcResult.textContent = result;
-                    calcResult.style.color = '#dcddde';
-                } else {
-                    calcResult.textContent = result;
-                    calcResult.style.color = '#ED4245';
-                }
-            } else {
-                calcResult.textContent = 'Entrada inválida';
-                calcResult.style.color = '#ED4245';
-                stepsTitle.textContent = "Operação";
-                calculationSteps.textContent = "Entrada inválida para o modo atual";
-            }
+        .help-btn:hover {
+            background-color: #db9c4f;
         }
 
-        function resetResultIfEmpty() {
-            let inputA = document.getElementById('binInputA').value;
-            let inputB = document.getElementById('binInputB').value;
-            let calcResult = document.getElementById('binCalcResult');
-        
-            if (inputA === "" || inputB === "") {
-                calcResult.textContent = '0'; 
-                calcResult.style.color = '#dcddde'; 
-            }
+        .help-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            padding-right: 30px;
         }
 
-        // função p abrir menu ajuda
-        function toggleHelpPanel() {
-            const helpPanel = document.getElementById('helpPanel');
-            helpPanel.style.display = helpPanel.style.display === 'none' ? 'block' : 'none';
+        .close-help {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: white;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 0;
+            transition: all 0.2s ease;
         }
 
-        const buttons = document.querySelectorAll('button, .toggle-btn, .help-btn');
+        .close-help:hover {
+            color: #ff0000;
+            background: none;
+        }
 
-        buttons.forEach(button => {
-            button.addEventListener('click', function() {
-                button.blur();
-            });
-        });
+        .help-content {
+            padding: 10px 0;
+        }
 
-        document.getElementById('binInputA').addEventListener('input', resetResultIfEmpty);
-        document.getElementById('binInputB').addEventListener('input', resetResultIfEmpty);
+        #calculationSteps {
+            font-family: 'Poppins', sans-serif;
+            white-space: pre-wrap;
+            text-align: left;
+            font-size: 13px;
+            line-height: 1.8;
+            letter-spacing: 0.3px;
+            margin-top: 10px;
+        }
+
+        #stepsTitle {
+            font-weight: 500;
+            font-size: 15px;
+            margin-bottom: 10px;
+            margin-top: -5px;
+            font-weight: bold;
+        }
+
+        .steps-container .result {
+            padding: 15px;
+            position: relative;
+            max-height: 260px;
+            overflow-y: auto;
+        }
+
+        .steps-content {
+            font-family: 'Poppins', sans-serif;
+            white-space: pre-wrap;
+            text-align: left;
+            font-size: 12px;
+            line-height: 1.8;
+            letter-spacing: 0.3px;
+            padding-right: 10px;
+        }
+
+        .steps-container .result::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .steps-container .result::-webkit-scrollbar-track {
+            background: none;
+        }
