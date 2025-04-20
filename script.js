@@ -29,8 +29,9 @@
                 document.getElementById('calculationSteps').textContent = steps;
                 document.getElementById('stepsTitle').textContent = "Conversão binário → decimal";
             } else {
-                binToDecResult.textContent = 'Binário inválido';
+                binToDecResult.textContent = '0';
                 binToDecResult.style.color = '#ED4245';
+                showToast('Entrada inválida! Digite apenas 0 e 1.', 'error');
             }
         }
 
@@ -66,8 +67,9 @@
                 document.getElementById('calculationSteps').textContent = steps;
                 document.getElementById('stepsTitle').textContent = "Conversão decimal → binário";
             } else {
-                decToBinResult.textContent = 'Decimal inválido';
+                decToBinResult.textContent = '0';
                 decToBinResult.style.color = '#ED4245';
+                showToast('Entrada inválida! Digite apenas números.', 'error');
             }
         }
 
@@ -137,7 +139,7 @@
                         operationSymbol = '÷';
                         steps += `Divisão:\n${numA} ÷ ${numB} = ${result}\n\n`;
                     } else {
-                        result = "Erro: divisão por zero";
+                        result = "?";
                     }
                 }
                 
@@ -197,10 +199,11 @@
                     calcResult.style.color = '#ED4245';
                 }
             } else {
-                calcResult.textContent = 'Entrada inválida';
+                calcResult.textContent = '#?';
                 calcResult.style.color = '#ED4245';
                 stepsTitle.textContent = "Operação";
-                calculationSteps.textContent = "Entrada inválida para o modo atual";
+                calculationSteps.textContent = "O que era pra ser isso?";
+                showToast('Entradas inválidas para o modo atual.', 'error');
             }
         }
 
@@ -218,8 +221,17 @@
         // função p abrir menu ajuda
         function toggleHelpPanel() {
             const helpPanel = document.getElementById('helpPanel');
-            helpPanel.style.display = helpPanel.style.display === 'none' ? 'block' : 'none';
+            if (helpPanel.style.display === 'block') {
+                helpPanel.style.display = 'none';
+            } else {
+                helpPanel.style.display = 'block';
+            }
         }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('helpPanel').style.display = 'none';
+            enableResultClickToReverse(); 
+        });
 
         const buttons = document.querySelectorAll('button, .toggle-btn, .help-btn');
 
@@ -231,3 +243,15 @@
 
         document.getElementById('binInputA').addEventListener('input', resetResultIfEmpty);
         document.getElementById('binInputB').addEventListener('input', resetResultIfEmpty);
+
+        function showToast(message, type = '') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+        
+            toastMessage.textContent = message;
+            toast.className = `toast visible ${type}`;
+        
+            setTimeout(() => {
+                toast.className = 'toast hidden';
+            }, 3000);
+        }
