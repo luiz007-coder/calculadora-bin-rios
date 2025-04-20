@@ -227,6 +227,7 @@
 
         @media (max-width: 768px) {
             .help-panel {
+                display: none;
                 width: 90%;
                 max-width: 400px;
                 padding: 15px;
@@ -384,3 +385,40 @@
         .steps-container .result::-webkit-scrollbar-track {
             background: none;
         }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background-color: #5c5c5c;
+            color: white;
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        
+        .toast.success {
+            background-color: #43B581;
+        }
+        
+        .toast.error {
+            background-color: #ED4245;
+        }
+        
+        .toast.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        .toast.hidden {
+            opacity: 0;
+            transform: translateX(-50%) translateY(-20px);
+        }
+        
