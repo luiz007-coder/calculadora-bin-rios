@@ -203,7 +203,7 @@
                 }                
                 
                 stepsTitle.innerHTML = `Operação decimal: <span class="${operation}-color">${numA} ${operationSymbol} ${numB}</span>`;
-                calculationSteps.textContent = steps;
+                calculationSteps.innerHTML = steps;
                 
                 if (result !== "Erro: divisão por zero") {
                     calcResult.textContent = result;
