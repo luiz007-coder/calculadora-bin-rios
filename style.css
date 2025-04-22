@@ -490,3 +490,8 @@
         .sum-color, .subtract-color, .multiply-color, .divide-color {
             font-weight: bold;
         }
+
+        .resto {
+            color: #c96cc7;
+            font-weight: bold;
+        }
