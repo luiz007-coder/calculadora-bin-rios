@@ -22,11 +22,19 @@
                 let steps = ``;
                 steps += `Número binário: ${binInput}\n\n`;
                 steps += `Cálculo:\n`;
+
+                const superscripts = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'];
                 
                 for (let i = 0; i < binInput.length; i++) {
                     let bit = binInput[i];
                     let power = binInput.length - 1 - i;
-                    steps += `${bit} × 2^${power} = ${bit * Math.pow(2, power)}\n`;
+                    let powerStr = power.toString();
+                    let powerFormatted = '';
+                    for (let char of powerStr) {
+                        powerFormatted += superscripts[parseInt(char)];
+                    }
+                    
+                    steps += `${bit} × 2${powerFormatted} = ${bit * Math.pow(2, power)}\n`;
                 }
                 
                 steps += `\nSoma total: ${decimal}`;
