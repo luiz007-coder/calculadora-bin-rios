@@ -53,7 +53,7 @@
 
         .input-error {
             border: 2px solid #ED4245 !important;
-        }        
+        }      
 
         button {
             font-weight: bold;
@@ -68,6 +68,38 @@
             height: 35px;
             margin-bottom: 10px;
         }
+
+        button.sum {
+            background-color: rgba(76, 175, 80, 0.25);
+            border: 2px solid rgba(76, 175, 80, 0.5);
+        }
+        button.sum:active {
+            background-color: rgba(20, 143, 26, 0.4);
+        }
+        
+        button.subtract {
+            background-color: rgba(229, 56, 53, 0.414);
+            border: 2px solid rgba(183, 28, 28, 0.5);
+        }
+        button.subtract:active {
+            background-color: rgba(198, 22, 22, 0.4);
+        }
+        
+        button.multiply {
+            background-color: rgba(24, 128, 219, 0.405);
+            border: 2px solid rgba(21, 101, 192, 0.5);
+        }
+        button.multiply:active {
+            background-color: rgba(7, 107, 221, 0.4);
+        }
+        
+        button.divide {
+            background-color: rgba(251, 138, 0, 0.336);
+            border: 2px solid rgba(239, 108, 0, 0.5);
+        }
+        button.divide:active {
+            background-color: rgba(192, 97, 19, 0.4);
+        }                       
 
         button:active {
             background: rgba(89, 67, 125, 0.5);
@@ -108,8 +140,9 @@
 
         .buttons {
             display: flex;
-            gap: 8px;
+            gap: 4px;
             justify-content: space-between;
+            flex-wrap: wrap;
         }
 
         .credits {
@@ -308,7 +341,6 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            transition: all 0.3s;
         }
         
         .help-btn:active {
@@ -400,9 +432,9 @@
             transform: translateX(-50%) translateY(-20px);
             background-color: #333;
             color: white;
-            padding: 14px 22px;
+            padding: 12px 20px;
             border-radius: 11px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
             z-index: 9999;
             opacity: 0;
@@ -437,4 +469,24 @@
         .toast-icon {
             margin-right: 10px;
             font-size: 18px;
+        }
+
+        .sum-color {
+            color: #4CAF50;
+        }
+        
+        .subtract-color {
+            color: #E53835;
+        }
+        
+        .multiply-color {
+            color: #1880DB;
+        }
+        
+        .divide-color {
+            color: #FB8A00;
+        }
+
+        .sum-color, .subtract-color, .multiply-color, .divide-color {
+            font-weight: bold;
         }
