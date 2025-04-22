@@ -1,6 +1,6 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'JetBrains Mono', monospace;
             background-color: #343434;
             color: #dcddde;
             display: flex;
@@ -39,35 +39,38 @@
 
         input {
             width: 100%;
-            padding: 10px;
-            font-size: 11px;
+            padding: 10px 14px;
             border-radius: 8px;
-            margin-bottom: 10px;
-            border: none;
-            outline: none;
-            background-color: #a5a5a5;
-            border: 2px solid #919191;
-            color: #fff;
-            transition: transform 0.3s, background-color 0.3s;
-            font-family: 'Poppins', sans-serif;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            border: 2px solid transparent;
+            margin-bottom: 15px;
+            transition: all 0.3s;
         }
+
+        .input-error {
+            border: 2px solid #ED4245 !important;
+        }        
 
         button {
             font-weight: bold;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            border: none;
+            background: rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
             width: 48px;
             height: 35px;
-            border-radius: 8px;
             margin-bottom: 10px;
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-            border: 2px solid #d6984c;
-            background-color: #e3a252;
-            transition: transform 0.3s;
         }
 
         button:active {
-            transform: scale(0.98);
+            background: rgba(89, 67, 125, 0.5);
         }
 
         ::placeholder {
@@ -84,12 +87,12 @@
         }
 
         input:focus {
-            background-color: #aeaeae;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(110, 72, 170, 0.3);
         }
 
         .result {
-            border: 2px solid #333333;
-            background-color: #525252;
+            background: rgba(0, 0, 0, 0.3);
             padding: 8px;
             border-radius: 11px;
             margin-bottom: 2px;
@@ -292,11 +295,12 @@
             right: 20px;
             width: 40px;
             height: 40px;
-            border-radius: 50%;
-            background-color: #e3a252;
-            color: white;
-            border: 2px solid #c7812c;
-            font-size: 17px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            font-size: 20px;
+            font-family: 'JetBrains Mono', monospace;
             font-weight: bold;
             cursor: pointer;
             z-index: 999;
@@ -306,6 +310,10 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             transition: all 0.3s;
         }
+        
+        .help-btn:active {
+            background: rgba(89, 67, 125, 0.5);
+        }        
 
         .help-header {
             display: flex;
@@ -343,7 +351,7 @@
         }
 
         #calculationSteps {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'JetBrains Mono', monospace;
             white-space: pre-wrap;
             text-align: left;
             font-size: 13px;
@@ -368,7 +376,7 @@
         }
 
         .steps-content {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'JetBrains Mono', monospace;
             white-space: pre-wrap;
             text-align: left;
             font-size: 12px;
