@@ -10,7 +10,7 @@
                 binToDecResult.style.color = '#dcddde';
             
                 document.getElementById('calculationSteps').textContent = "";
-                document.getElementById('stepsTitle').textContent = "Operação";
+                document.getElementById('stepsTitle').textContent = "Operação:";
                 return;
             } else if (/^[01]+$/.test(binInput)) {
                 let decimal = parseInt(binInput, 2);
@@ -50,7 +50,7 @@
                 decToBinResult.style.color = '#dcddde';
             
                 document.getElementById('calculationSteps').textContent = "";
-                document.getElementById('stepsTitle').textContent = "Operação";
+                document.getElementById('stepsTitle').textContent = "Operação:";
                 return;
             } else if (!isNaN(decInput) && decInput.trim() !== "" && Number(decInput) >= 0) {
                 let decimal = parseInt(decInput);
