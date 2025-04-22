@@ -168,7 +168,7 @@
                     calcResult.style.color = '#ED4245';
                 }
                 
-                stepsTitle.innerHTML = `Operação binária: <span class="${operation}-color">${inputA} ${operationSymbol} ${inputB}</span>`;
+                stepsTitle.innerHTML = `Operação: <span class="${operation}-color">${inputA} ${operationSymbol} ${inputB}</span>`;
                 calculationSteps.innerHTML = steps;
             } else if (operation && !isBinaryMode && !isNaN(inputA) && !isNaN(inputB)) {
                 // calc dec aqui
@@ -176,7 +176,7 @@
                 let numB = parseFloat(inputB);
                 let result;
                 let operationSymbol = '';
-                let steps = `Operação Decimal:\n\n`;
+                let steps = `Operação decimal:\n\n`;
                 steps += `Decimal A: ${numA}\n`;
                 steps += `Decimal B: ${numB}\n\n`;
                 
@@ -202,7 +202,7 @@
                     }
                 }                
                 
-                stepsTitle.innerHTML = `Operação decimal: <span class="${operation}-color">${numA} ${operationSymbol} ${numB}</span>`;
+                stepsTitle.innerHTML = `Operação: <span class="${operation}-color">${numA} ${operationSymbol} ${numB}</span>`;
                 calculationSteps.innerHTML = steps;
                 
                 if (result !== "Erro: divisão por zero") {
