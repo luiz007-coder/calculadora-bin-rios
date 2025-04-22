@@ -77,13 +77,13 @@
                 while (num > 0) {
                     let remainder = num % 2;
                     remainders.unshift(remainder);
-                    steps += `${num} ÷ 2 = ${Math.floor(num / 2)} (resto ${remainder})\n`;
+                    steps += `${num} ÷ 2 = ${Math.floor(num / 2)} (<span class="resto">resto ${remainder}</span>)\n`;
                     num = Math.floor(num / 2);
                 }
                 
-                steps += `\nRestos lidos de baixo para cima: ${remainders.join('')}`;
+                steps += `\nRestos lidos de baixo para cima: <span class="resto">${remainders.join('')}</span>`;
                 
-                document.getElementById('calculationSteps').textContent = steps;
+                document.getElementById('calculationSteps').innerHTML = steps;
                 document.getElementById('stepsTitle').textContent = "Conversão decimal → binário";
             } else {
                 decToBinResult.textContent = '0';
