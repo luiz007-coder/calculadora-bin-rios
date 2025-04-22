@@ -8,13 +8,18 @@
             if (binInput === "") {
                 binToDecResult.textContent = '0';
                 binToDecResult.style.color = '#dcddde';
+            
+                document.getElementById('calculationSteps').textContent = "";
+                document.getElementById('stepsTitle').textContent = "Operação";
+                return;
             } else if (/^[01]+$/.test(binInput)) {
                 let decimal = parseInt(binInput, 2);
                 binToDecResult.textContent = decimal;
                 binToDecResult.style.color = '#dcddde';
+                document.getElementById('binInput').classList.remove('input-error');
                 
                 // mostra o passo a passo
-                let steps = `Conversão de binário para decimal:\n\n`;
+                let steps = ``;
                 steps += `Número binário: ${binInput}\n\n`;
                 steps += `Cálculo:\n`;
                 
@@ -31,6 +36,7 @@
             } else {
                 binToDecResult.textContent = '0';
                 binToDecResult.style.color = '#ED4245';
+                document.getElementById('binInput').classList.add('input-error');
                 showToast('Entrada inválida! Digite apenas 0 e 1.', 'error');
             }
         }
@@ -42,14 +48,19 @@
             if (decInput === "") {
                 decToBinResult.textContent = '0';
                 decToBinResult.style.color = '#dcddde';
+            
+                document.getElementById('calculationSteps').textContent = "";
+                document.getElementById('stepsTitle').textContent = "Operação";
+                return;
             } else if (!isNaN(decInput) && decInput.trim() !== "" && Number(decInput) >= 0) {
                 let decimal = parseInt(decInput);
+                document.getElementById('decInput').classList.remove('input-error');
                 let binary = decimal.toString(2);
                 decToBinResult.textContent = binary;
                 decToBinResult.style.color = '#dcddde';
                 
                 // mostra o passo a passo
-                let steps = `Conversão de decimal para binário:\n\n`;
+                let steps = ``;
                 steps += `Número decimal: ${decimal}\n\n`;
                 steps += `Divisões sucessivas por 2:\n`;
                 
@@ -69,6 +80,7 @@
             } else {
                 decToBinResult.textContent = '0';
                 decToBinResult.style.color = '#ED4245';
+                document.getElementById('decInput').classList.add('input-error');
                 showToast('Entrada inválida! Digite apenas números.', 'error');
             }
         }
@@ -103,6 +115,8 @@
             let inputA = document.getElementById('binInputA').value;
             let inputB = document.getElementById('binInputB').value;
             let calcResult = document.getElementById('binCalcResult');
+            document.getElementById('binInputA').classList.remove('input-error');
+            document.getElementById('binInputB').classList.remove('input-error');
             let stepsTitle = document.getElementById('stepsTitle');
             let calculationSteps = document.getElementById('calculationSteps');
         
@@ -202,6 +216,8 @@
                 calcResult.textContent = '#?';
                 calcResult.style.color = '#ED4245';
                 stepsTitle.textContent = "Operação";
+                document.getElementById('binInputA').classList.add('input-error');
+                document.getElementById('binInputB').classList.add('input-error');
                 calculationSteps.textContent = "O que era pra ser isso?";
                 showToast('Entradas inválidas para o modo atual.', 'error');
             }
@@ -255,3 +271,30 @@
                 toast.className = 'toast hidden';
             }, 3000);
         }
+
+        function validarCalcInputs() {
+            const inputA = document.getElementById('binInputA');
+            const inputB = document.getElementById('binInputB');
+        
+            if (isBinaryMode) {
+                /^[01]+$/.test(inputA.value) || inputA.value === ""
+                    ? inputA.classList.remove('input-error')
+                    : inputA.classList.add('input-error');
+        
+                /^[01]+$/.test(inputB.value) || inputB.value === ""
+                    ? inputB.classList.remove('input-error')
+                    : inputB.classList.add('input-error');
+            } else {
+                !isNaN(inputA.value) || inputA.value === ""
+                    ? inputA.classList.remove('input-error')
+                    : inputA.classList.add('input-error');
+        
+                !isNaN(inputB.value) || inputB.value === ""
+                    ? inputB.classList.remove('input-error')
+                    : inputB.classList.add('input-error');
+            }
+        }
+
+        document.getElementById('binInputA').addEventListener('input', validarCalcInputs);
+        document.getElementById('binInputB').addEventListener('input', validarCalcInputs);
+        
