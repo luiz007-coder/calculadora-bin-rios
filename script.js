@@ -37,7 +37,7 @@
                 binToDecResult.textContent = '0';
                 binToDecResult.style.color = '#ED4245';
                 document.getElementById('binInput').classList.add('input-error');
-                showToast('Entrada inválida! Digite apenas 0 e 1.', 'error');
+                showToast('Entrada inválida! Utilize apenas 0 ou 1.', 'error');
             }
         }
 
@@ -81,7 +81,7 @@
                 decToBinResult.textContent = '0';
                 decToBinResult.style.color = '#ED4245';
                 document.getElementById('decInput').classList.add('input-error');
-                showToast('Entrada inválida! Digite apenas números.', 'error');
+                showToast('Entrada inválida! Utilize apenas números.', 'error');
             }
         }
 
@@ -138,20 +138,20 @@
                 if (operation === 'sum') {
                     result = numA + numB;
                     operationSymbol = '+';
-                    steps += `Soma:\n${numA} + ${numB} = ${result}\n\n`;
+                    steps += `<span class="sum-color">Soma:\n${numA} + ${numB} = ${result}\n\n</span>`;
                 } else if (operation === 'subtract') {
                     result = numA - numB;
                     operationSymbol = '-';
-                    steps += `Subtração:\n${numA} - ${numB} = ${result}\n\n`;
+                    steps += `<span class="subtract-color">Subtração:\n${numA} - ${numB} = ${result}\n\n</span>`;
                 } else if (operation === 'multiply') {
                     result = numA * numB;
                     operationSymbol = '×';
-                    steps += `Multiplicação:\n${numA} × ${numB} = ${result}\n\n`;
+                    steps += `<span class="multiply-color">Multiplicação:\n${numA} × ${numB} = ${result}\n\n</span>`;
                 } else if (operation === 'divide') {
                     if (numB !== 0) {
                         result = numA / numB;
                         operationSymbol = '÷';
-                        steps += `Divisão:\n${numA} ÷ ${numB} = ${result}\n\n`;
+                        steps += `<span class="divide-color">Divisão:\n${numA} ÷ ${numB} = ${result}\n\n</span>`;
                     } else {
                         result = "?";
                     }
@@ -168,8 +168,8 @@
                     calcResult.style.color = '#ED4245';
                 }
                 
-                stepsTitle.textContent = `Operação binária: ${inputA} ${operationSymbol} ${inputB}`;
-                calculationSteps.textContent = steps;
+                stepsTitle.innerHTML = `Operação binária: <span class="${operation}-color">${inputA} ${operationSymbol} ${inputB}</span>`;
+                calculationSteps.innerHTML = steps;
             } else if (operation && !isBinaryMode && !isNaN(inputA) && !isNaN(inputB)) {
                 // calc dec aqui
                 let numA = parseFloat(inputA);
@@ -183,26 +183,26 @@
                 if (operation === 'sum') {
                     result = numA + numB;
                     operationSymbol = '+';
-                    steps += `Soma:\n${numA} + ${numB} = ${result}\n\n`;
+                    steps += `<span class="sum-color">Soma:\n${numA} + ${numB} = ${result}\n\n</span>`;
                 } else if (operation === 'subtract') {
                     result = numA - numB;
                     operationSymbol = '-';
-                    steps += `Subtração:\n${numA} - ${numB} = ${result}\n\n`;
+                    steps += `<span class="subtract-color">Subtração:\n${numA} - ${numB} = ${result}\n\n</span>`;
                 } else if (operation === 'multiply') {
                     result = numA * numB;
                     operationSymbol = '×';
-                    steps += `Multiplicação:\n${numA} × ${numB} = ${result}\n\n`;
+                    steps += `<span class="multiply-color">Multiplicação:\n${numA} × ${numB} = ${result}\n\n</span>`;
                 } else if (operation === 'divide') {
                     if (numB !== 0) {
                         result = numA / numB;
                         operationSymbol = '÷';
-                        steps += `Divisão:\n${numA} ÷ ${numB} = ${result}\n\n`;
+                        steps += `<span class="divide-color">Divisão:\n${numA} ÷ ${numB} = ${result}\n\n</span>`;
                     } else {
                         result = "Erro: divisão por zero";
                     }
-                }
+                }                
                 
-                stepsTitle.textContent = `Operação decimal: ${numA} ${operationSymbol} ${numB}`;
+                stepsTitle.innerHTML = `Operação decimal: <span class="${operation}-color">${numA} ${operationSymbol} ${numB}</span>`;
                 calculationSteps.textContent = steps;
                 
                 if (result !== "Erro: divisão por zero") {
