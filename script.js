@@ -223,7 +223,7 @@
             } else {
                 calcResult.textContent = '#?';
                 calcResult.style.color = '#ED4245';
-                stepsTitle.textContent = "Operação";
+                stepsTitle.textContent = "Operação:";
                 document.getElementById('binInputA').classList.add('input-error');
                 document.getElementById('binInputB').classList.add('input-error');
                 calculationSteps.textContent = "O que era pra ser isso?";
@@ -305,4 +305,3 @@
 
         document.getElementById('binInputA').addEventListener('input', validarCalcInputs);
         document.getElementById('binInputB').addEventListener('input', validarCalcInputs);
-        
